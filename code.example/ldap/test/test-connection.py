@@ -191,7 +191,6 @@ class test:
 			# session.set_option(ldap.OPT_SIZELIMIT, 3) #効果無し
 			items_affected = 0
 			filter_string = '(uid={0})'.format(uid)
-			# filter_string = '(uid:caseExactMatch:={0})'.format(uid)
 			handle = session.search('ou=People,dc=example,dc=jp',
 				ldap.SCOPE_SUBTREE, filter_string, [ 'uid' ])
 			while 1:
