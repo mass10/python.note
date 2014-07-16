@@ -5,7 +5,7 @@
 ##準備
 
 ```
-easy_install python3-ldap
+# easy_install python3-ldap
 ```
 
 
