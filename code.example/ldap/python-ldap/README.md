@@ -8,6 +8,7 @@
 ```
 # yum install gcc gcc-c++
 # yum install openldap-devel
+# yum install python-devel
 # easy_install python-ldap
 ```
 
