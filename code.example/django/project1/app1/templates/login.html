@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<form method="post" action="/login">
+			{% csrf_token %}
+			<h1>Django</h1>
+			<hr>
+			<a href="/">HOME</a> | <a href="/login">LOGIN</a>
+			<hr>
+			<br>
+			<br>
+			<br>
+			<br>
+			<h2>LOGIN</h2>
+			<table>
+				<tr>
+					<td>USER</td>
+					<td><input type="text" name="login.user" value=""></td>
+				</tr>
+				<tr>
+					<td>password</td>
+					<td><input type="password" name="login.password" value=""></td>
+				</tr>
+			</table>
+			<input type="submit" name="login.submit_button" value="     submit     ">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</form>
+	</body>
+</html>
+
