@@ -2,6 +2,7 @@
 
 import django
 import uuid
+import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.sessions.backends.cache import SessionStore
@@ -11,57 +12,42 @@ from django.contrib.sessions.backends.cache import SessionStore
 
 
 
-def main(request):
+def api(request):
 
 	#
 	# 単純な文字列を返却するアクションの例
 	#
 
-	session_id = get_session_id(request)
-	user_name = get_session(request, 'user')
-	# s = SessionStore(session_key = '')
-	if False:
-		return django.http.HttpResponse(
-				'hello user_name=[' + str(user_name) + ']' +
-				', session_id=[' + str(session_id) + ']')
-	template = django.template.loader.get_template('index.html')
-	fields = { 'x_user_name': user_name }
+	response = {
+		'response': 'hello',
+		'current_user': request.session.get('user', ''),
+	}
+	return django.http.HttpResponse(json.dumps(response))
+
+def main(request):
+
+	# session_id = get_session_id(request)
+	user_name = request.session.get('user')
+	fields = {
+		'session': {
+			'session_key' : request.session.session_key,
+			'user' : user_name,
+		}
+	}
 	context = django.template.RequestContext(request, fields)
+	template = django.template.loader.get_template('index.html')
 	return django.http.HttpResponse(template.render(context))
 
 def get_session_id(request):
 	
-	try:
-	
-		# session_id = request.session['session.id']
-	
-		# session = SessionStore()
+	session_id = request.session.session_key
+	if session_id == None:
+		request.session.save()
 		session_id = request.session.session_key
-		if session_id == '' or session_id == None:
-			# request.session = SessionStore() #不要
-			request.session.save()
-			session_id = request.session.session_key
-
-		return session_id
-	
-	except:
-
-		# session_id = uuid.uuid1()
-		# session_id = str(session_id)
-		# request.session['session.id'] = session_id
-		# return session_id
-
-		s = SessionStore()
-		s.save()
-		return s.session_key
-
-def get_session(request, item_name):
-	try:
-		return request.session[item_name]
-	except Exception, e:
-		return None
+	return session_id
 
 def try_login(request):
+
 	user_name = request.POST['login.user']
 	if len(user_name) == 0:
 		return False
@@ -76,9 +62,9 @@ def login(request):
 	if request.method == 'POST':
 		if try_login(request):
 			return django.http.HttpResponseRedirect('/')
-	template = django.template.loader.get_template('login.html')
 	fields = {}
 	context = django.template.RequestContext(request, fields)
+	template = django.template.loader.get_template('login.html')
 	return django.http.HttpResponse(template.render(context))
 
 
@@ -100,9 +86,9 @@ def hello(request):
 	# テンプレートを利用したアクションの例
 	#
 
-	template = django.template.loader.get_template('hello.html')
 	fields = {}
 	context = django.template.RequestContext(request, fields)
+	template = django.template.loader.get_template('hello.html')
 	return django.http.HttpResponse(template.render(context))
 
 
