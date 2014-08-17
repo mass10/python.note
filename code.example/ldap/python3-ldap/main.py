@@ -23,7 +23,6 @@ import hashlib
 class constants:
 
 	HOST = '192.168.40.128';
-	URL = 'ldap://192.168.40.139:389';
 	PORT = 389;
 	PRINCIPAL = 'cn=Manager,dc=example,dc=jp';
 	PASSWORD = 'root';
