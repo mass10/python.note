@@ -13,7 +13,9 @@ import json
 def _println(*arguments):
 
 	for x in arguments:
-		sys.stdout.write(str(x))
+		s = '' + x
+		sys.stdout.write(s.encode('utf-8'))
+		# sys.stdout.write(str(x))
 	sys.stdout.write("\n")
 
 def _execute():
@@ -58,11 +60,11 @@ def _execute():
 
 	_println(json.dumps(result, sort_keys=True, indent=4))
 
-def main():
+def _main():
 
 	_execute()
 
-main()
+_main()
 
 
 
