@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 #
+# MySQL で接続する例
 #
 #
 #
-#
+
 import os
 import sys
 import logging
@@ -29,7 +30,7 @@ class out:
 
 		xwrite = sys.stdout.write
 		for x in arguments:
-			xwrite(str(x))
+			xwrite(('' + x).encode('utf-8'))
 		xwrite("\n")
 
 
@@ -66,20 +67,22 @@ class main:
 	@staticmethod
 	def _main():
 
-		# logging.basicConfig(filename='myapp.log', level=logging.INFO)
-		logging.basicConfig(level=logging.DEBUG)
+		# logging.basicConfig(
+		#	filename='myapp.log',
+		#	level=logging.INFO)
 
+		logging.basicConfig(
+			level=logging.DEBUG)
 
-
-		logging.info('### start ###')
-		logging.debug('ddddddddddddddddddddddddddddddddddddd')
+		logging.info(u'### start ###')
+		logging.debug(u'ddddddddddddddddddddddddddddddddddddd')
 
 		main._test_mysql()
 
-		logging.info('日本語')
-		logging.warn('ああああああああああああああああああああああああああ')
-		logging.error('いいいいいいいいいいいいいいいいいいいいいいいいいいい')
-		logging.info('--- end ---')
+		logging.info(u'日本語')
+		logging.warn(u'ああああああああああああああああああああああああああ')
+		logging.error(u'いいいいいいいいいいいいいいいいいいいいいいいいいいい')
+		logging.info(u'--- end ---')
 
 main._main()
 
