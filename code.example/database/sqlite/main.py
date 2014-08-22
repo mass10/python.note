@@ -64,9 +64,9 @@ def _dump_db(path):
 	for row in rows:
 		_show_records(connection, row[0])
 
-	affected = connection.execute(
-		'update auth_user set email = ? where id = ?',
-		['unknown@example.com', 1])
+	# connection.execute(
+	# 	'update auth_user set email = ? where id = ?',
+	# 	['unknown@example.com', 1])
 
 	connection.close()
 
