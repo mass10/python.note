@@ -41,7 +41,7 @@ def main():
 		connection = mysql.connector.connect(
 				host='192.168.141.139',
 				user='root',
-				password='root',
+				# password='root',
 				database='information_schema')
 
 		cursor = connection.cursor()
