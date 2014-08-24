@@ -42,7 +42,8 @@ def main():
 				host='192.168.141.139',
 				user='root',
 				# password='root',
-				database='information_schema')
+				database='information_schema',
+				buffered=True)
 
 		cursor = connection.cursor()
 
