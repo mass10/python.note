@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+#
+#
+# SQLite3 のデータベースファイルをダンプする
+#
+#
+#
 
 
 
@@ -51,7 +56,7 @@ def _show_records(connection, table_name):
 def _dump_db(path):
 
 	if not os.path.isfile(path):
-		_println('引数はファイルではない')
+		_println(u'引数はファイルではない')
 		return
 
 	connection = sqlite3.connect(
@@ -75,7 +80,10 @@ def main(*args):
 	if len(args) == 1:
 		_println(u'引数は？')
 		return
+
 	path = unicode(args[1], 'utf-8')
+
+	_println(u'### start ###')
 
 	# =========================================================================
 	# データベースファイル全体をダンプ
