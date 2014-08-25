@@ -1,4 +1,17 @@
 #!/usr/bin/env python
+# coding: utf-8
+#
+#
+# digest のサンプル
+#
+#
+#
+#
+#
+#
+#
+#
+#
 
 import sys
 import codecs
