@@ -44,7 +44,7 @@ def _show_records(connection, table_name):
 		'select * from "' + table_name + '"')
 	detected = 0
 	for row in rows:
-		_println(json.dumps(row))
+		_println(json.dumps(row, ensure_ascii=False))
 		detected += 1
 
 	#
