@@ -15,8 +15,8 @@ def TestGet():
 	#
 
 	fields = {}
-	response = requests.get("http://127.0.0.1/", params=fields)
-
+	fields['q'] = u'ウェブスクレイピング'
+	response = requests.get("http://www.google.com/search", params=fields)
 	print(response.text)
 
 def TestPost():
@@ -28,15 +28,13 @@ def TestPost():
 	fields = {}
 	fields['login_form.user'] = 'unknown@example.jp';
 	fields['login_form.password'] = 'no password';
-
 	response = requests.post("http://127.0.0.1/login", params=fields)
-
 	print(response.text)
 
 def Main():
 
 	TestGet()
 
-	TestPost()
+	# TestPost()
 
 Main()
