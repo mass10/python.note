@@ -2,7 +2,7 @@
 # coding: utf-8
 #
 #
-# SQLite3 のデータベースファイルをダンプする
+# SQLite3 のデータベースファイルをダンプします。
 #
 #
 #
@@ -56,22 +56,26 @@ def _show_records(connection, table_name):
 def _dump_db(path):
 
 	if not os.path.isfile(path):
-		_println(u'引数はファイルではない')
+		_println(u'引数はファイルではないようだ...')
 		return
 
 	connection = sqlite3.connect(
 		path, isolation_level=None)
-
 	rows = connection.execute(
-		'select name from sqlite_master where type = ? order by name',
+		'select name from sqlite_master \
+		where type = ? order by name',
 		['table'])
-
 	for row in rows:
 		_show_records(connection, row[0])
 
-	# connection.execute(
-	# 	'update auth_user set email = ? where id = ?',
-	# 	['unknown@example.com', 1])
+	if 0:
+		connection.execute(
+			'update auth_user set email = ? where id = ?',
+			['unknown@example.com', 1])
+	if 0:
+		connection.execute(
+	 		'update app1_person set mail = ?',
+	 		['unknown@example.com'])
 
 	connection.close()
 
@@ -83,11 +87,17 @@ def main(*args):
 
 	path = unicode(args[1], 'utf-8')
 
-	_println(u'### start ###')
+	_println('### start ###')
+
+	if not os.path.isfile(path):
+		_println(u'引数はファイルではないようだ...')
+		return
 
 	# =========================================================================
 	# データベースファイル全体をダンプ
 	# =========================================================================
 	_dump_db(path)
+
+	_println('--- end ---')
 
 main(*sys.argv)
