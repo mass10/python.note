@@ -71,7 +71,7 @@ class logger:
 	@staticmethod
 	def debug(*arguments):
 
-		if 1:
+		if 0:
 			f = inspect.stack()
 			f = f[2]
 			f = f[0]
@@ -94,6 +94,11 @@ class logger:
 			# info = repr(info)
 			out.println(util.timestamp(), ' [debug] <', info, '> ', *arguments)
 			return
+		if 1:
+			f = inspect.currentframe()
+			f = inspect.getframeinfo(f)
+# print(f.module + '.' + f.function)
+			print(repr(f))
 	
 ###############################################################################
 ###############################################################################
