@@ -171,6 +171,7 @@ class main:
 					attributes = {'uid': 'user.002', 'sn': 'user.002', 'cn': 'user.002', 'mail': 'user.002@example.jp'})
 		except Exception as e:
 			logger.error(str(e))
+
 		session.unbind()
 
 	@staticmethod
