@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
+#
+# OpenLDAP からデータを抽出する
+#
+#
+#
+#
+#
 
 
 import sys
@@ -8,6 +15,7 @@ import ldap3
 import datetime
 import time
 import json
+import codecs
 
 
 
@@ -40,10 +48,12 @@ class out:
 	@staticmethod
 	def println(*arguments):
 
-		xwrite = sys.stdout.write
+		out = codecs.getwriter('utf-8')(sys.stdout)
 		for x in arguments:
-			xwrite(str(x))
-		xwrite("\n")
+			if x is None:
+				continue
+			out.write(x)
+		out.write("\n")
 
 
 
@@ -158,7 +168,7 @@ class test:
 
 		session.unbind()
 
-		logger.info(entries_affected, '件のエントリーを検出')
+		logger.info(str(entries_affected), u'件のエントリーを検出')
 
 
 
@@ -177,10 +187,10 @@ class main:
 	def main():
 
 		watch = stopwatch()
-		logger.info('### start ###')
+		logger.info(u'### start ###')
 		test.test()
-		logger.info('処理時間=[', watch, ']')
-		logger.info('--- end ---')
+		logger.info(u'処理時間=[', str(watch), ']')
+		logger.info(u'--- end ---')
 
 main.main();
 
