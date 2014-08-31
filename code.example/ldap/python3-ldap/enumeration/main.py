@@ -6,11 +6,8 @@ import sys
 import os
 import ldap3
 import datetime
-import inspect
-import traceback
 import time
-import hashlib
-
+import json
 
 
 
@@ -152,11 +149,11 @@ class test:
 				'ou=People,dc=example,dc=jp',
 				'(objectClass=*)',
 				ldap3.SEARCH_SCOPE_WHOLE_SUBTREE,
-				attributes = [ 'uid' ])
+				attributes = [ '*', '+' ])
 
 		entries_affected = 0
 		for entry in session.response:
-			logger.info('detected: ', entry['dn'])
+			logger.info('detected: ', json.dumps(entry, indent=4))
 			entries_affected += 1
 
 		session.unbind()
