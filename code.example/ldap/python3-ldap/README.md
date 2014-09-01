@@ -1,6 +1,6 @@
 ##はじめに
 
-どうも pure python で LDAP 接続できるパッケージがあるっぽいことがわかったので接続テストしてみた。python 3 対応で 2 conpatible らしい。
+どうも pure python で LDAP 接続できるパッケージがあるっぽいことがわかったので接続テストしてみた。python 3 対応で 2 compatible らしい。
 
 ##環境
 
