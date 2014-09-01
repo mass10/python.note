@@ -74,8 +74,7 @@ def _dump_db(path):
 			['unknown@example.com', 1])
 	if 0:
 		connection.execute(
-	 		'update app1_person set mail = ?',
-	 		['unknown@example.com'])
+	 		'delete from django_admin_log')
 
 	connection.close()
 
