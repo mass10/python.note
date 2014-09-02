@@ -12,13 +12,9 @@
 #
 #
 
-import os
 import sys
 import feedparser
-import getopt
-import time
-import datetime
-
+import codecs
 
 
 
@@ -35,10 +31,12 @@ class out:
 	@staticmethod
 	def println(*arguments):
 		
-		xwrite = sys.stdout.write
+		out = codecs.getwriter('utf-8')(sys.stdout)
 		for x in arguments:
-			xwrite(str(x))
-		xwrite("\n")
+			if x is None:
+				continue
+			out.write('' + x)
+		out.write("\n")
 
 
 
@@ -57,19 +55,14 @@ class rssreader:
 	def get(url):
 
 		out.println(url)
-		
-		feed = feedparser.parse(url)
 
-		if False:
-			for item in feed:
-				fields = feed[item]
-				out.println(item, ' ', fields)
+		feed = feedparser.parse(url)
 
 		for entry in feed['entries']:
 			published = entry['published']
-			title = entry['title'].encode('utf_8')
-			link = entry['link'].encode('utf_8')
-			out.println(published, ', ', title, ', ', link)
+			title = entry['title']
+			link = entry['link']
+			out.println(published, ', ', title, ', ', str(link))
 
 
 
