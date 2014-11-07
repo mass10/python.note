@@ -10,8 +10,6 @@
 #
 #
 #
-#
-#
 
 import sys
 import codecs
@@ -24,7 +22,7 @@ def _println(*args):
 		out.write('' + x)
 	out.write("\n")
 
-def main():
+def _main():
 
 	# =========================================================================
 	# MD5 DIGEST
@@ -44,5 +42,5 @@ def main():
 		g.update('abcdefg')
 		_println('[', g.hexdigest(), ']')
 
-main()
+_main()
 
