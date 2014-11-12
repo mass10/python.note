@@ -31,7 +31,7 @@ def _main():
 
 		g = hashlib.md5()
 		g.update('abcdefg')
-		_println('[', g.hexdigest(), ']')
+		_println('MD5: [', g.hexdigest(), ']')
 	
 	# =========================================================================
 	# SHA-256
@@ -40,7 +40,7 @@ def _main():
 
 		g = hashlib.sha256()
 		g.update('abcdefg')
-		_println('[', g.hexdigest(), ']')
+		_println('SHA256: [', g.hexdigest(), ']')
 
 _main()
 
