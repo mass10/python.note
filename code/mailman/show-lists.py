@@ -7,7 +7,6 @@ import time
 import datetime
 import optparse
 
-sys.path.append('/usr/lib64/python2.6/site-packages')
 sys.path.append('/usr/lib/mailman')
 import Mailman.MailList
 import Mailman.mm_cfg
