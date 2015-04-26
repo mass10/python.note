@@ -141,12 +141,8 @@ class main:
 		main._dump_list_information(mlist)
 
 	@staticmethod
-	def _show_system_configuration():
+	def _get_attributes():
 
-		console.println('#')
-		console.println('# SYSTEM CONFIGURATION')
-		console.println('#')
-	
 		names = []
 		names.append('DEFAULT_BOUNCE_PROCESSING')
 		names.append('DEFAULT_BOUNCE_SCORE_THRESHOLD')
@@ -157,11 +153,33 @@ class main:
 		names.append('DEFAULT_BOUNCE_NOTIFY_OWNER_ON_REMOVAL')
 		names.append('REGISTER_BOUNCES_EVERY')
 		names.sort()
+		return names
+
+	@staticmethod
+	def _show_system_configuration():
+
+		console.println('#')
+		console.println('# SYSTEM CONFIGURATION')
+		console.println('#')
 	
 		conf = Mailman.mm_cfg
+		names = main._get_attributes()
 		for name in names:
 			console.println(name, '=[', getattr(conf, name), ']')
 		console.println()
+
+	@staticmethod
+	def _find_lists(filter):
+
+		names = []
+		for list_name in sorted(Mailman.Utils.list_names()):
+			if options.filter is None:
+				names.append(list_name)
+				continue
+			if list_name.count(options.filter):
+				names.append(list_name)
+				continue
+		return names
 
 	@staticmethod
 	def _show_mailinglists(options):
@@ -170,14 +188,8 @@ class main:
 		console.println('# LISTS')
 		console.println('#')
 
-		names = []
-		for list_name in sorted(Mailman.Utils.list_names()):
-			if options.filter != None:
-				if not list_name.count(options.filter):
-					continue
-			names.append(list_name)
-
 		found = 0
+		names = main._find_lists(options.filter)
 		for list_name in names:
 			main._print_list_data(list_name);
 			found += 1
