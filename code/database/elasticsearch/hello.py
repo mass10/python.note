@@ -12,11 +12,14 @@ import time
 import uuid
 from datetime import datetime
 from elasticsearch import Elasticsearch
+import json
 
 def _main(argv):
 
 	INDEX_NAME = 'sample_database_20151123'
 	DOC_TYPE_NAME = 'sample_entry_20151123',
+
+
 
 	# 接続設定
 	es = Elasticsearch(host = '192.168.141.160')
@@ -37,8 +40,7 @@ def _main(argv):
 
 	# 結果を表示
 	for e in response['hits']['hits']:
-
-		print str(e)
+		print json.dumps(e)
 
 	# index(=データベース？？)を破棄
 	es.indices.delete(index = INDEX_NAME)
