@@ -1,18 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
-#
-# > before you run
-#
-#      easy_install requests
-#
 
 import requests
 
 def TestGet():
-
-	#
-	# GET リクエストを送出します。
-	#
 
 	fields = {}
 	fields['q'] = u'ウェブスクレイピング'
@@ -21,20 +12,15 @@ def TestGet():
 
 def TestPost():
 
-	#
-	# POST リクエストを送出します。
-	#
-
 	fields = {}
 	fields['login_form.user'] = 'unknown@example.jp'
 	fields['login_form.password'] = 'no password'
 	response = requests.post("http://127.0.0.1/login", params=fields)
 	print(response.text)
 
-def Main():
+def _main():
 
 	TestGet()
-
 	# TestPost()
 
-Main()
+_main()
