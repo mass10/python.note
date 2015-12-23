@@ -22,7 +22,8 @@ def _main(argv):
 
 
 	# 接続設定
-	es = Elasticsearch(host = '192.168.141.160')
+	# es = Elasticsearch()
+	es = Elasticsearch(host = '127.0.0.1')
 
 	# index に document(?) を追加
 	for e in range(100):
@@ -33,10 +34,8 @@ def _main(argv):
 	es.indices.refresh(index = INDEX_NAME)
 
 	# 全件検索
-	response = es.search(index = INDEX_NAME, body = {})
-
-	# ヒット数
-	print('hits: {0}'.format(response['hits']['total']))
+	# response = es.search(index = INDEX_NAME, body = {})
+	response = es.search(index = INDEX_NAME, body={"query": {"match_all": {}}, "size": 9999})
 
 	# 結果を表示
 	for e in response['hits']['hits']:
@@ -45,4 +44,8 @@ def _main(argv):
 	# index(=データベース？？)を破棄
 	es.indices.delete(index = INDEX_NAME)
 
+	# ヒット数
+	print('hits: {0}'.format(response['hits']['total']))
+
 _main(sys.argv)
+

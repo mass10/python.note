@@ -24,19 +24,11 @@ def _main(argv):
 	# 接続設定
 	es = Elasticsearch(host = '127.0.0.1')
 
-	if not es.indices.exists(INDEX_NAME):
-		print('{0} が存在しません'.format(INDEX_NAME))
-		return
-
-	# 全件検索
-	# response = es.search(index = INDEX_NAME, body = {})
-	response = es.search(index = INDEX_NAME, body={"query": {"match_all": {}}, "size": 9999})
-
-	# 結果を表示
-	for e in response['hits']['hits']:
-		print json.dumps(e)
-
-	# ヒット数
-	print('hits: {0}'.format(response['hits']['total']))
+	# index(=データベース？？)を破棄
+	if es.indices.exists(index = INDEX_NAME):
+		es.indices.delete(index = INDEX_NAME)
+		print('削除しました')
+	else:
+		print('インデックスはきれいな状態です')
 
 _main(sys.argv)
