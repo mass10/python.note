@@ -29,7 +29,7 @@ def _main(argv):
 		return
 
 	# 全件検索
-	# response = es.search(index = INDEX_NAME, body = {})
+	# response = es.search(index = INDEX_NAME, body = {}) # returns 10 indices.
 	response = es.search(index = INDEX_NAME, body={"query": {"match_all": {}}, "size": 9999})
 
 	# 結果を表示
