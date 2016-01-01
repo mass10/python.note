@@ -22,27 +22,18 @@ def _main(argv):
 
 
 	# 接続設定
-	es = Elasticsearch(host = '192.168.141.160')
+	es = Elasticsearch(host = '127.0.0.1')
+
+	# index(=データベース？？)を破棄
+	if es.indices.exists(index = INDEX_NAME):
+		es.indices.delete(index = INDEX_NAME)
 
 	# index に document(?) を追加
 	for e in range(100):
 		es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = str(uuid.uuid1()), body = {})
-		print '.'
+		print e
 
 	# 強制コミット？？
 	es.indices.refresh(index = INDEX_NAME)
-
-	# 全件検索
-	response = es.search(index = INDEX_NAME, body = {})
-
-	# ヒット数
-	print('hits: {0}'.format(response['hits']['total']))
-
-	# 結果を表示
-	for e in response['hits']['hits']:
-		print json.dumps(e)
-
-	# index(=データベース？？)を破棄
-	es.indices.delete(index = INDEX_NAME)
 
 _main(sys.argv)
