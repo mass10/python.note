@@ -37,4 +37,6 @@ def _main(argv):
 	print('vvv=[{}]'.format(options.vvv))
 	print('function=[{}]'.format(options.function))
 
+        # p.print_help()
+
 _main(sys.argv)
