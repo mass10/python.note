@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
+#
+# IMPORT:
+# cd {$solr_install_path}
+# bin/solr create -c exampledocs
+# bin/post -c exampledocs example/exampledocs/*.xml
+#
+#
+#
+#
+#
 
 import requests
 import json
