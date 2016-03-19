@@ -30,8 +30,10 @@ def _main(argv):
 		es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = str(uuid.uuid1()), body = {})
 		print '.'
 
-	# 強制コミット？？
+	# 強制コミット
 	es.indices.refresh(index = INDEX_NAME)
+
+        # time.sleep(0.5)
 
 	# 全件検索
 	# response = es.search(index = INDEX_NAME, body = {})
@@ -41,11 +43,11 @@ def _main(argv):
 	for e in response['hits']['hits']:
 		print json.dumps(e)
 
-	# index(=データベース？？)を破棄
-	es.indices.delete(index = INDEX_NAME)
-
 	# ヒット数
 	print('hits: {0}'.format(response['hits']['total']))
+
+	# index(=データベース？？)を破棄
+	es.indices.delete(index = INDEX_NAME)
 
 _main(sys.argv)
 

@@ -15,8 +15,8 @@ def main():
 	#
 	# LEGACY(?) FORMATTING
 	#
-	print '%d' % 999
-	print '%s, %d' % ('ABC', 999)
+	print u'出力: %d' % 999
+	print u'出力: %s, %d' % ('ABC', 999)
 
 	#
 	# MODERN(?) FORMATTING
