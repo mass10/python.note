@@ -32,11 +32,13 @@ def _main(argv):
 
 	(options, args) = p.parse_args()
 
+	if options.function is None or options.function == '':
+		p.print_help()
+		return
+
 	print('v=[{}]'.format(options.v))
 	print('vv=[{}]'.format(options.vv))
 	print('vvv=[{}]'.format(options.vvv))
 	print('function=[{}]'.format(options.function))
-
-        # p.print_help()
 
 _main(sys.argv)
