@@ -17,13 +17,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-	content_text = """
-	<html>
-	<body>
-	Hello Flask World!
-	</body>
-	</html>
-	"""
+	content_text = "Hello Flask World!"
 	return content_text
 
 @app.route("/users")
