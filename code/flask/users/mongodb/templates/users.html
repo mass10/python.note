@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+	</head>
+	<body style="font-family: Meiryo">
+		<form>
+			USERS [{% print fields['timestamp'] %}]<br>
+			<hr>
+			<div id="panel">
+				{% if fields %}
+					{% if fields['users'] %}
+						{% for user in fields['users'] %}
+							{% print user %}<br>
+						{% endfor %}
+					{% endif %}
+				{% endif %}
+			</div>
+			<script type="text/javascript">
+			setTimeout(function() {
+				location.reload();
+			}, 1500);
+			</script>
+		</form>
+	</body>
+</html>
+
