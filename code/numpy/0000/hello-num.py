@@ -8,8 +8,15 @@ import numpy
 
 class Main:
 
-	@staticmethod
-	def main():
-		pass
+	def main(self):
 
-Main.main()
+		print numpy.version.full_version
+
+		xar = numpy.array([1, 2, 3, 4, 5])
+		print xar
+		print xar.ndim
+		print xar.shape
+
+		print 'Ok.'
+
+Main().main()
