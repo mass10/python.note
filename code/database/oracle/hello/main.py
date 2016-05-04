@@ -16,7 +16,6 @@ def _main():
 	cursor.execute('ALTER SESSION SET NLS_TIME_TZ_FORMAT = \'HH24:MI:SSXFF\'')
 	cursor.execute('ALTER SESSION SET NLS_TIMESTAMP_FORMAT = \'YYYY-MM-DD HH24:MI:SSXFF\'')
 	cursor.execute('ALTER SESSION SET NLS_TIMESTAMP_TZ_FORMAT = \'YYYY-MM-DD HH24:MI:SSXFF\'')
-	cursor.execute('ALTER SESSION SET NLS_LANG = \'Japanese_Japan.AL32UTF8\'')
 
 	cursor.execute('SELECT CURRENT_TIMESTAMP FROM DUAL')
 	for row in cursor.next():
