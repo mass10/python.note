@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-
+import os
 import argparse
 import base64
 import httplib2
@@ -32,6 +32,8 @@ def _detect_faces(photo_file):
 	if photo_file == None or photo_file == '':
 		print 'No file'
 		return None
+
+	os.environ[u'GOOGLE_APPLICATION_CREDENTIALS'] = u'/home/ec2-user/.google/vision-api-no-test-d7262692285e.json'
 
 	# =========================================================================
 	# 認証

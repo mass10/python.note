@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import os
 import sys
 import argparse
 import base64
@@ -21,6 +22,8 @@ def main(photo_file):
 	if photo_file == None or photo_file == '':
 		print 'No file'
 		return
+
+	os.environ[u'GOOGLE_APPLICATION_CREDENTIALS'] = u'/home/ec2-user/.google/vision-api-no-test-d7262692285e.json'
 
 	logging.raiseExceptions = True #True: Debugging, False: Production
 	logging.basicConfig(stream = sys.stdout, level = logging.DEBUG)
