@@ -7,12 +7,18 @@ import base64
 import httplib2
 import json
 import pprint 
-from googleapiclient.discovery import build
+from googleapiclient import discovery
 from oauth2client.client import GoogleCredentials
 from PIL import Image
 from PIL import ImageDraw
 
+def load_image_from_file(path):
+
+	with open(path, 'rb') as image:
+		return base64.b64encode(image.read())
+
 def highlight_faces(image, faces, output_filename):
+
 	im = Image.open(image)
 	draw = ImageDraw.Draw(im)
 	for face in faces:
@@ -23,40 +29,45 @@ def highlight_faces(image, faces, output_filename):
 
 def _detect_faces(photo_file):
 
+	if photo_file == None or photo_file == '':
+		print 'No file'
+		return None
+
 	# =========================================================================
 	# 認証
 	# =========================================================================
-	http = httplib2.Http()
-	credentials = GoogleCredentials.get_application_default().create_scoped(
-		[
-			'https://www.googleapis.com/auth/cloud-platform',
-		]
-	)
-	credentials.authorize(http)
+	credentials = GoogleCredentials.get_application_default()
+	# http = httplib2.Http()
+	# credentials = GoogleCredentials.get_application_default().create_scoped(
+	# 	[
+	# 		'https://www.googleapis.com/auth/cloud-platform',
+	# 	]
+	# )
+	# credentials.authorize(http)
 
 	# =========================================================================
 	# リクエスト
 	# =========================================================================
-	API_DISCOVERY_FILE = 'https://vision.googleapis.com/$discovery/rest?version=v1'
-	service = build('vision', 'v1', http, discoveryServiceUrl = API_DISCOVERY_FILE)
-	with open(photo_file, 'rb') as image:
-		image_content = base64.b64encode(image.read())
-		body = {
-			'requests': [
-				{
-					'image': {
-						'content': image_content
-					},
-					'features': [
-						{
-							'type': 'FACE_DETECTION',
-							'maxResults': 5,
-						}
-					]
-				}
-			]
-		}
-		service_request = service.images().annotate(body = body)
+	# API_DISCOVERY_FILE = 'https://vision.googleapis.com/$discovery/rest?version=v1'
+	API_DISCOVERY_FILE = 'https://{api}.googleapis.com/$discovery/rest?version={apiVersion}'
+	service = discovery.build('vision', 'v1', credentials=credentials, discoveryServiceUrl = API_DISCOVERY_FILE)
+	image_content = load_image_from_file(photo_file)
+	body = {
+		'requests': [
+			{
+				'image': {
+					'content': image_content.decode('UTF-8')
+				},
+				'features': [
+					{
+						'type': 'FACE_DETECTION',
+						'maxResults': 5,
+					}
+				]
+			}
+		]
+	}
+	service_request = service.images().annotate(body = body)
 
 	# =========================================================================
 	# 実行
@@ -81,6 +92,7 @@ def main(path):
 	faces = _detect_faces(path)
 	if faces is None:
 		return
+
 	# 名前を付けてファイルを保存
 	with open(path, 'rb') as image:
 		highlight_faces(image, faces, 'out.jpg')
@@ -89,6 +101,6 @@ if __name__ == '__main__':
 
 	parser = argparse.ArgumentParser()
 	parser.add_argument(
-		'--image-file', help = 'The image you\'d like to label.')
+		'--image-file', help = 'path to image.')
 	args = parser.parse_args()
 	main(args.image_file)
