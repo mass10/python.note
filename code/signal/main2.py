@@ -30,6 +30,7 @@ class main:
 	@staticmethod
 	def main():
 		signal.signal(signal.SIGINT, main._handler)
+		signal.signal(signal.SIGTERM, main._handler)
 		app.run()
 
 main.main()
