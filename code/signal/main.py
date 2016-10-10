@@ -23,6 +23,7 @@ def _main():
 	print '### start ###'
 
 	signal.signal(signal.SIGINT, _handler)
+	signal.signal(signal.SIGTERM, _handler)
 
 	while _alive():
 		time.sleep(1)
