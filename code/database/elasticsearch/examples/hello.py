@@ -33,7 +33,7 @@ def _main(argv):
 	# 強制コミット
 	es.indices.refresh(index = INDEX_NAME)
 
-        # time.sleep(0.5)
+	# time.sleep(0.5)
 
 	# 全件検索
 	# response = es.search(index = INDEX_NAME, body = {})
