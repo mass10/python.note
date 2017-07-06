@@ -8,7 +8,8 @@ class out:
 
 	@staticmethod
 	def println(*arguments):
-		
+
+		# Python3 になったら日本語をそのまま扱えるっぽい
 		out = sys.stdout
 		# out = codecs.getwriter('utf-8')(sys.stdout)
 		for x in arguments:
