@@ -1,1 +1,4 @@
 # python.note  
+
+メモ
+
