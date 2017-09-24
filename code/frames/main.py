@@ -8,7 +8,6 @@
 
 import sys
 import os
-import ldap
 import datetime
 import inspect
 import traceback
