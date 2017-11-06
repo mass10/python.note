@@ -10,5 +10,6 @@ def main():
 	data = sklearn.datasets.load_iris()
 	table = pandas.DataFrame(data.data, columns=data.feature_names)
 	print(table)
+	print('{} 件のレコードを表示'.format(len(table)))
 
 main()
