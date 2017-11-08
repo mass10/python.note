@@ -8,12 +8,12 @@ import itertools
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
-from sklearn.datasets import load_iris
+import sklearn.datasets
 import numpy as np
 
 def main():
 
-	data = load_iris()
+	data = sklearn.datasets.load_iris()
 
 	features = data['data']
 	feature_names = data['feature_names']
@@ -21,11 +21,10 @@ def main():
 	target_names = data['target_names']
 	labels = target_names[target]
 
-	set = ((0, "^", "r"), (1, "o", "g"), (2, "x", "b"))
-	for t, marker, c in set:
+	markers = ((0, '^', 'r'), (1, 'o', 'g'), (2, 'x', 'b'))
+	for t, marker, c in markers:
 		plt.scatter(features[target == t, 0], features[target == t, 1], marker=marker, c=c)
 
-	# plt.show()
 	plt.savefig('0000.png')
 
 main()
