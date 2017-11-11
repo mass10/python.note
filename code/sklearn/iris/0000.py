@@ -25,6 +25,11 @@ def main():
 	for t, marker, c in markers:
 		plt.scatter(features[target == t, 0], features[target == t, 1], marker=marker, c=c)
 
+	# 同じ
+	# plt.scatter(features[target == 0, 0], features[target == 0, 1], marker='^', c='r')
+	# plt.scatter(features[target == 1, 0], features[target == 1, 1], marker='o', c='g')
+	# plt.scatter(features[target == 2, 0], features[target == 2, 1], marker='x', c='b')
+
 	plt.savefig('0000.png')
 
 main()
