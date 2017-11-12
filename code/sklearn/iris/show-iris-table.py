@@ -30,19 +30,22 @@ def _main():
 	print('---')
 	print(table.query("target == 0"))
 	print(table.query("target == 0")["petal length (cm)"].mean())
-	print(table.query("target == 0")["petal width (cm)"].mean())
+	print(table.query("target == 0")["petal length (cm)"].max())
+	print(table.query("target == 0")["petal length (cm)"].min())
 
 	print()
 	print('---')
 	print(table.query("target == 1"))
 	print(table.query("target == 1")["petal length (cm)"].mean())
-	print(table.query("target == 1")["petal width (cm)"].mean())
+	print(table.query("target == 1")["petal length (cm)"].max())
+	print(table.query("target == 1")["petal length (cm)"].min())
 
 	print()
 	print('---')
 	print(table.query("target == 2"))
 	print(table.query("target == 2")["petal length (cm)"].mean())
-	print(table.query("target == 2")["petal width (cm)"].mean())
+	print(table.query("target == 2")["petal length (cm)"].max())
+	print(table.query("target == 2")["petal length (cm)"].min())
 
 	# summary
 	print('{} 件のレコードを表示'.format(len(table)))
