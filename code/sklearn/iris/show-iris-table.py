@@ -27,9 +27,22 @@ def _main():
 	table['target_name'] = target_names[targets]
 
 	# filtering
+	print('---')
 	print(table.query("target == 0"))
+	print(table.query("target == 0")["petal length (cm)"].mean())
+	print(table.query("target == 0")["petal width (cm)"].mean())
+
+	print()
+	print('---')
 	print(table.query("target == 1"))
+	print(table.query("target == 1")["petal length (cm)"].mean())
+	print(table.query("target == 1")["petal width (cm)"].mean())
+
+	print()
+	print('---')
 	print(table.query("target == 2"))
+	print(table.query("target == 2")["petal length (cm)"].mean())
+	print(table.query("target == 2")["petal width (cm)"].mean())
 
 	# summary
 	print('{} 件のレコードを表示'.format(len(table)))
