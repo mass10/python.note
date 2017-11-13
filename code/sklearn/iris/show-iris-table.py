@@ -5,6 +5,18 @@ import sklearn.datasets
 import pandas
 import numpy
 
+def _show_dataset(dataset):
+
+	print(dataset)
+	print('{} rows.'.format(len(dataset)))
+	print()
+	print("petal length mean(cm): {}".format(dataset["petal length (cm)"].mean()))
+	print("petal length max(cm): {}".format(dataset["petal length (cm)"].max()))
+	print("petal length min(cm): {}".format(dataset["petal length (cm)"].min()))
+	print("petal width mean(cm): {} cm".format(dataset["petal width (cm)"].mean()))
+	print("petal width max(cm): {} cm".format(dataset["petal width (cm)"].max()))
+	print("petal width min(cm): {} cm".format(dataset["petal width (cm)"].min()))
+
 def _main():
 
 	# configure
@@ -28,26 +40,15 @@ def _main():
 
 	# filtering
 	print('---')
-	print(table.query("target == 0"))
-	print(table.query("target == 0")["petal length (cm)"].mean())
-	print(table.query("target == 0")["petal length (cm)"].max())
-	print(table.query("target == 0")["petal length (cm)"].min())
-
+	_show_dataset(table.query("target == 0"))
 	print()
 	print('---')
-	print(table.query("target == 1"))
-	print(table.query("target == 1")["petal length (cm)"].mean())
-	print(table.query("target == 1")["petal length (cm)"].max())
-	print(table.query("target == 1")["petal length (cm)"].min())
-
+	_show_dataset(table.query("target == 1"))
 	print()
 	print('---')
-	print(table.query("target == 2"))
-	print(table.query("target == 2")["petal length (cm)"].mean())
-	print(table.query("target == 2")["petal length (cm)"].max())
-	print(table.query("target == 2")["petal length (cm)"].min())
+	_show_dataset(table.query("target == 2"))
 
 	# summary
-	print('{} 件のレコードを表示'.format(len(table)))
+	# print('{} 件のレコードを表示'.format(len(table)))
 
 _main()
