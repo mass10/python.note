@@ -10,12 +10,12 @@ def _show_dataset(dataset):
 	print(dataset)
 	print('{} rows.'.format(len(dataset)))
 	print()
-	print("petal length mean(cm): {}".format(dataset["petal length (cm)"].mean()))
-	print("petal length max(cm): {}".format(dataset["petal length (cm)"].max()))
-	print("petal length min(cm): {}".format(dataset["petal length (cm)"].min()))
-	print("petal width mean(cm): {} cm".format(dataset["petal width (cm)"].mean()))
-	print("petal width max(cm): {} cm".format(dataset["petal width (cm)"].max()))
-	print("petal width min(cm): {} cm".format(dataset["petal width (cm)"].min()))
+	print("petal length mean: {} cm".format(dataset["petal length (cm)"].mean()))
+	print("petal length max: {} cm".format(dataset["petal length (cm)"].max()))
+	print("petal length min: {} cm".format(dataset["petal length (cm)"].min()))
+	print("petal width mean: {} cm".format(dataset["petal width (cm)"].mean()))
+	print("petal width max: {} cm".format(dataset["petal width (cm)"].max()))
+	print("petal width min: {} cm".format(dataset["petal width (cm)"].min()))
 
 def _main():
 
