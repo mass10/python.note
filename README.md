@@ -4,7 +4,7 @@
 
 # _tkinter.TclError: no display name and no $DISPLAY environment variable ######################
 
-```
+```python
 import matplotlib
 matplotlib.use('Agg')
 ```
