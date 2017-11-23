@@ -21,6 +21,7 @@ $ sudo yum install python36-pip
 ```
 $ sudo apt install python3
 $ sudo apt install python3-pip
+$ sudo apt install python3-virtualenv
 ```
 
 # Installing mod_wsgi on Ubuntu 16.04 LTS ######################
