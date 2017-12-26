@@ -17,7 +17,7 @@ end'''
     stream = StringIO.StringIO(s)
     for line in stream:
         line = line.rstrip("\r\n")
-        print line
+        print(line)
 
 _main()
 
