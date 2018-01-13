@@ -39,3 +39,11 @@ $ sudo service apache2 restart
 # pip3 install pandas
 # pip3 install scikit-learn
 ```
+
+# Jupyter Notebook
+
+```
+$ pip3 install jupyter
+$ jupyter notebook --ip 192.168.187.134
+```
+
