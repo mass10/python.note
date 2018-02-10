@@ -24,7 +24,7 @@ def tweet(text):
 	req = twitter.post("https://api.twitter.com/1.1/statuses/update.json", params=params)
 	print(req)
 
-def main():
+def read_text():
 	s = io.StringIO()
 	reader = sys.stdin
 	for line in reader:
@@ -33,7 +33,10 @@ def main():
 		if line == ".\r\n":
 			break
 		s.write(line)
-	tweet(s.getvalue())
+	return s.getvalue()
+
+def main():
+	text = read_text()
+	tweet(text)
 
 main()
-
