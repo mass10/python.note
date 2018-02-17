@@ -247,18 +247,20 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		left = top = width = height = pptx.util.Inches(1)
-		left, top, cx, cy = pptx.util.Inches(0.8), pptx.util.Inches(0.8), pptx.util.Inches(8.4), pptx.util.Inches(1)
-		textbox = slide.shapes.add_textbox(left, top, cx, cy)
-		text_frame = textbox.text_frame
-		text_frame.word_wrap = True
-		# 段落を追加
-		p = text_frame.add_paragraph()
-		run = p.add_run()
-		run.text = "Ansh ash a skjwidhnqm xnajhwslzm widh aslk al Najhsbleei. Le a Kan Najweee ka. Has ashqie nclk aiqw djfseok naxbad jqhdu asfifjnzxs kasjles jas wee le ag das."
-		run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
+		# テキストボックスを挿入
+		if True:
+			left, top, cx, cy = pptx.util.Inches(0.8), pptx.util.Inches(0.8), pptx.util.Inches(8.4), pptx.util.Inches(1)
+			textbox = slide.shapes.add_textbox(left, top, cx, cy)
+			text_frame = textbox.text_frame
+			text_frame.word_wrap = True
+			# 段落を追加
+			p = text_frame.add_paragraph()
+			run = p.add_run()
+			run.text = "Ansh ash a skjwidhnqm xnajhwslzm widh aslk al Najhsbleei. Le a Kan Najweee ka. Has ashqie nclk aiqw djfseok naxbad jqhdu asfifjnzxs kasjles jas wee le ag das."
+			run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
 		# 画像を挿入
-		picture_box = slide.shapes.add_picture("images/image-01.png", pptx.util.Inches(1), pptx.util.Inches(2.4))
+		if True:
+			picture_box = slide.shapes.add_picture("images/image-01.png", pptx.util.Inches(1), pptx.util.Inches(2.4))
 
 	### Bullet Slide ###
 	if True:
