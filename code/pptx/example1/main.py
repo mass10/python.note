@@ -35,18 +35,39 @@ def main():
 	### Title Slide ###
 	if True:
 
+		# スライドを生成
 		new_slide = presentation.slide_layouts[0]
-
+		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
 		title = slide.shapes.title.text = "もうこわくない！パワポ！パワポ！パ・ワ・ポ！"
 		subtitle = slide.placeholders[1]
 		subtitle.text = "2018年2月14日\n社内勉強会"
 
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[6]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+
+		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "こんなことありませんか..."
+		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
+		run.font.size = pptx.util.Pt(64)
+
 	### Bullet Slide ###
 	if True:
 
+		# スライドを生成
 		new_slide = presentation.slide_layouts[1]
-
+		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
 		shapes = slide.shapes
 		# タイトル部分
@@ -59,8 +80,9 @@ def main():
 	### Bullet Slide ###
 	if True:
 
+		# スライドを生成
 		new_slide = presentation.slide_layouts[1]
-
+		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
 		shapes = slide.shapes
 		# タイトル部分
@@ -70,17 +92,184 @@ def main():
 		pa = body_shape.text_frame.add_paragraph()
 		pa.text = "上司がパワポが好き"
 		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "毎月パワポで報告作れ"
+		pa.text = "あなたがパワポが好き"
 
 	### Bullet Slide ###
 	if True:
 
+		# スライドを生成
 		new_slide = presentation.slide_layouts[1]
-
+		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
 		shapes = slide.shapes
 		# タイトル部分
-		shapes.title.text = "年間平均気温(2017年)"
+		shapes.title.text = "こんなことありませんか..."
+		# 下の部分
+		body_shape = shapes.placeholders[1]
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "上司がパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "あなたがパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "パワポを作る定期作業がある"
+
+	### Bullet Slide ###
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		shapes = slide.shapes
+		# タイトル部分
+		shapes.title.text = "こんなことありませんか..."
+		# 下の部分
+		body_shape = shapes.placeholders[1]
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "上司がパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "あなたがパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "パワポを作る定期作業がある"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "毎回数字をちょっと書き換えて提出している"
+
+	### Bullet Slide ###
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		shapes = slide.shapes
+		# タイトル部分
+		shapes.title.text = "こんなことありませんか..."
+		# 下の部分
+		body_shape = shapes.placeholders[1]
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "上司がパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "あなたがパワポが好き"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "パワポを作る定期作業がある"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "毎回数字をちょっと書き換えて提出している"
+		# (-"-)
+		textbox = slide.shapes.add_textbox(
+			pptx.util.Inches(6.2),
+			pptx.util.Inches(4.7),
+			pptx.util.Inches(2.0),
+			pptx.util.Inches(2.0))
+		text_frame = textbox.text_frame
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "(-\"-)"
+		# run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
+		run.font.size = pptx.util.Pt(100)
+
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[6]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "それでは"
+		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
+		run.font.size = pptx.util.Pt(64)
+
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[6]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		left, top, cx, cy = pptx.util.Inches(2.3), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "python-pptx"
+		run.font.size = pptx.util.Pt(74)
+
+	### Bullet Slide ###
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		shapes = slide.shapes
+		# タイトル部分
+		shapes.title.text = "What is python-pptx?"
+		# 下の部分
+		body_shape = shapes.placeholders[1]
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "Microsoft PowerPoint のスライドを Python アプリケーション内から作成するためのライブラリです。"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "pip で簡単インストール"
+
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		# タイトル部分
+		shapes = slide.shapes
+		shapes.title.text = "インストール"
+		# textbox を挿入
+		left, top, cx, cy = pptx.util.Inches(0.9), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "pip install python-pptx"
+		run.font.size = pptx.util.Pt(40)
+
+	### Blank Slide
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[6]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		left = top = width = height = pptx.util.Inches(1)
+		left, top, cx, cy = pptx.util.Inches(0.8), pptx.util.Inches(0.8), pptx.util.Inches(8.4), pptx.util.Inches(1)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+		# 段落を追加
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "Ansh ash a skjwidhnqm xnajhwslzm widh aslk al Najhsbleei. Le a Kan Najweee ka. Has ashqie nclk aiqw djfseok naxbad jqhdu asfifjnzxs kasjles jas wee le ag das."
+		run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
+		# 画像を挿入
+		picture_box = slide.shapes.add_picture("images/image-01.png", pptx.util.Inches(1), pptx.util.Inches(2.4))
+
+	### Bullet Slide ###
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		shapes = slide.shapes
+		# タイトル部分
+		shapes.title.text = "サンプル: 年間平均気温(2017年)"
 		# チャート
 		chart_data = pptx.chart.data.ChartData()
 		chart_data.categories = series_labels_01
@@ -93,79 +282,62 @@ def main():
 		).chart
 		chart.has_legend = True
 
-	### Bullet Slide ###
+	### セクション 見出し
 	if True:
 
-		new_slide = presentation.slide_layouts[1]
-
-		slide = presentation.slides.add_slide(new_slide)
-		shapes = slide.shapes
-		# タイトル部分
-		shapes.title.text = "こんなことありませんか..."
-		# 下の部分
-		body_shape = shapes.placeholders[1]
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "上司がパワポが好き"
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "毎月パワポで報告作れ"
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "あなたがパワポが好き"
-
-	### Bullet Slide ###
-	if True:
-
-		new_slide = presentation.slide_layouts[1]
-
-		slide = presentation.slides.add_slide(new_slide)
-		shapes = slide.shapes
-		# タイトル部分
-		shapes.title.text = "こんなことありませんか..."
-		# 下の部分
-		body_shape = shapes.placeholders[1]
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "上司がパワポが好き"
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "毎月パワポで報告作れ"
-		pa = body_shape.text_frame.add_paragraph()
-		pa.text = "あなたがパワポが好き"
-
-		textbox = slide.shapes.add_textbox(
-			pptx.util.Inches(6.0),
-			pptx.util.Inches(4.6),
-			pptx.util.Inches(2.0),
-			pptx.util.Inches(2.0))
-		text_frame = textbox.text_frame
-		# 段落を追加
-		p = text_frame.add_paragraph()
-		run = p.add_run()
-		run.text = "(-\"-)"
-		# run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
-		run.font.size = pptx.util.Pt(100)
-
-	### Blank Slide
-	if True:
-
+		# スライドを生成
 		new_slide = presentation.slide_layouts[6]
-
+		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		left = top = width = height = pptx.util.Inches(1)
-		textbox = slide.shapes.add_textbox(
-			pptx.util.Inches(0.8),
-			pptx.util.Inches(0.8),
-			pptx.util.Inches(8.4),
-			pptx.util.Inches(1))
+		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-		# 段落を追加
+
 		p = text_frame.add_paragraph()
 		run = p.add_run()
-		run.text = "Ansh ash a skjwidhnqm xnajhwslzm widh aslk al Najhsbleei. Le a Kan Najweee ka. Has ashqie nclk aiqw djfseok naxbad jqhdu asfifjnzxs kasjles jas wee le ag das."
-		run.font.color.rgb = pptx.dml.color.RGBColor(0x50, 0x80, 0x90)
+		run.text = "まとめ"
+		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
+		run.font.size = pptx.util.Pt(64)
 
-		picture_box = slide.shapes.add_picture(
-			"images/image-01.png",
-			pptx.util.Inches(1),
-			pptx.util.Inches(2.4))
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[1]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		shapes = slide.shapes
+		# タイトル部分
+		shapes.title.text = "まとめ"
+		# 下の部分
+		body_shape = shapes.placeholders[1]
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "定型作業は自動化"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "人は必ず間違いをする"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "目視確認を排除"
+		pa = body_shape.text_frame.add_paragraph()
+		pa.text = "作業ではなく、本質的なことに時間を"
+
+	### セクション 見出し
+	if True:
+
+		# スライドを生成
+		new_slide = presentation.slide_layouts[6]
+		# 挿入
+		slide = presentation.slides.add_slide(new_slide)
+		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
+		text_frame = textbox.text_frame
+		text_frame.word_wrap = True
+
+		p = text_frame.add_paragraph()
+		run = p.add_run()
+		run.text = "おわり"
+		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
+		run.font.size = pptx.util.Pt(64)
 
 	presentation.save('hello.pptx')
 
