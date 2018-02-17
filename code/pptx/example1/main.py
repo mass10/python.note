@@ -14,7 +14,7 @@ def main():
 		new_slide = presentation.slide_layouts[0]
 
 		slide = presentation.slides.add_slide(new_slide)
-		title = slide.shapes.title.text = "こうこわくない！パワポ！パワポ！パ・ワ・ポ！"
+		title = slide.shapes.title.text = "もうこわくない！パワポ！パワポ！パ・ワ・ポ！"
 		subtitle = slide.placeholders[1]
 		subtitle.text = "2018年2月14日\n社内勉強会"
 
