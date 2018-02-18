@@ -349,6 +349,8 @@ def main():
 			body = shapes.placeholders[1]
 			body.left = pptx.util.Inches(0.9)
 			body.top = pptx.util.Inches(5.0)
+			body.width = pptx.util.Inches(8.0)
+			body.height = pptx.util.Inches(2.0)
 			text_frame = body.text_frame
 			# text_frame.word_wrap = True
 			#
