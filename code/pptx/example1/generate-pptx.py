@@ -43,8 +43,8 @@ def main():
 		slide = presentation.slides.add_slide(new_slide)
 		shapes = slide.shapes
 
-		shapes.title.text = "もうこわくない！\nパワポ！パワポ！\nパ・ワ・ポ！"
-		# slide.shapes.title.font.size = pptx.util.Pt(100)
+		title = shapes.title
+		title.text = "もうこわくない！\nパワポ！パワポ！\nパ・ワ・ポ！"
 
 		subtitle = slide.placeholders[1]
 		subtitle.text = "2018年2月14日\n社内勉強会"
