@@ -18,10 +18,12 @@ def load_chart_data():
 	labels = []
 	series_01 = []
 	series_02 = []
+	
 	for e in unknown:
 		labels.append(e["label"])
 		series_01.append(e["2016"])
 		series_02.append(e["2017"])
+
 	return labels, series_01, series_02
 
 def main():
@@ -50,12 +52,12 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-
-		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		# textbox を挿入
+		left, top = pptx.util.Inches(1.0), pptx.util.Inches(2.5)
+		cx, cy = pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "こんなことありませんか..."
@@ -154,12 +156,10 @@ def main():
 		pa.text = "パワポを作る定期作業がある"
 		pa = body_shape.text_frame.add_paragraph()
 		pa.text = "毎回数字をちょっと書き換えて提出している"
-		# (-"-)
-		textbox = slide.shapes.add_textbox(
-			pptx.util.Inches(6.2),
-			pptx.util.Inches(4.7),
-			pptx.util.Inches(2.0),
-			pptx.util.Inches(2.0))
+		# textbox を挿入
+		left, top = pptx.util.Inches(6.2), pptx.util.Inches(4.7)
+		cx, cy = pptx.util.Inches(2.0), pptx.util.Inches(2.0)
+		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		p = text_frame.add_paragraph()
 		run = p.add_run()
@@ -174,11 +174,11 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
+		# textbox を挿入
 		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "それでは"
@@ -192,11 +192,11 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
+		# textbox を挿入
 		left, top, cx, cy = pptx.util.Inches(2.3), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "python-pptx"
@@ -226,15 +226,14 @@ def main():
 		new_slide = presentation.slide_layouts[1]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		# タイトル部分
 		shapes = slide.shapes
+		# タイトル部分
 		shapes.title.text = "インストール"
 		# textbox を挿入
 		left, top, cx, cy = pptx.util.Inches(0.9), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "pip install python-pptx"
@@ -247,7 +246,7 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		# テキストボックスを挿入
+		# textbox を挿入
 		if True:
 			left, top, cx, cy = pptx.util.Inches(0.8), pptx.util.Inches(0.8), pptx.util.Inches(8.4), pptx.util.Inches(1)
 			textbox = slide.shapes.add_textbox(left, top, cx, cy)
@@ -291,16 +290,18 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
-		textbox = slide.shapes.add_textbox(left, top, cx, cy)
-		text_frame = textbox.text_frame
-		text_frame.word_wrap = True
-
-		p = text_frame.add_paragraph()
-		run = p.add_run()
-		run.text = "まとめ"
-		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
-		run.font.size = pptx.util.Pt(64)
+		# textbox を挿入
+		if True:
+			left, top = pptx.util.Inches(1.0), pptx.util.Inches(2.5)
+			cx, cy = pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+			textbox = slide.shapes.add_textbox(left, top, cx, cy)
+			text_frame = textbox.text_frame
+			text_frame.word_wrap = True
+			p = text_frame.add_paragraph()
+			run = p.add_run()
+			run.text = "まとめ"
+			run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
+			run.font.size = pptx.util.Pt(64)
 
 	### セクション 見出し
 	if True:
@@ -330,17 +331,19 @@ def main():
 		new_slide = presentation.slide_layouts[6]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		left, top, cx, cy = pptx.util.Inches(1.0), pptx.util.Inches(2.5), pptx.util.Inches(8.0), pptx.util.Inches(1.0)
+		# textbox を挿入
+		left, top = pptx.util.Inches(1.0), pptx.util.Inches(2.5)
+		cx, cy = pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
 		text_frame.word_wrap = True
-
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "おわり"
 		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
 		run.font.size = pptx.util.Pt(64)
 
-	presentation.save('hello.pptx')
+	### 書き出し
+	presentation.save('example1.pptx')
 
 main()
