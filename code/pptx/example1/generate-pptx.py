@@ -41,7 +41,11 @@ def main():
 		new_slide = presentation.slide_layouts[0]
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
-		title = slide.shapes.title.text = "もうこわくない！パワポ！パワポ！パ・ワ・ポ！"
+		shapes = slide.shapes
+
+		shapes.title.text = "もうこわくない！\nパワポ！パワポ！\nパ・ワ・ポ！"
+		# slide.shapes.title.font.size = pptx.util.Pt(100)
+
 		subtitle = slide.placeholders[1]
 		subtitle.text = "2018年2月14日\n社内勉強会"
 
@@ -53,16 +57,16 @@ def main():
 		# 挿入
 		slide = presentation.slides.add_slide(new_slide)
 		# textbox を挿入
-		left, top = pptx.util.Inches(1.0), pptx.util.Inches(2.5)
+		left, top = pptx.util.Inches(0.8), pptx.util.Inches(2.8)
 		cx, cy = pptx.util.Inches(8.0), pptx.util.Inches(1.0)
 		textbox = slide.shapes.add_textbox(left, top, cx, cy)
 		text_frame = textbox.text_frame
-		text_frame.word_wrap = True
+		text_frame.word_wrap = False
 		p = text_frame.add_paragraph()
 		run = p.add_run()
 		run.text = "こんなことありませんか..."
 		run.font.color.rgb = pptx.dml.color.RGBColor(0x60, 0x60, 0x60)
-		run.font.size = pptx.util.Pt(64)
+		run.font.size = pptx.util.Pt(55)
 
 	### Bullet Slide ###
 	if True:
