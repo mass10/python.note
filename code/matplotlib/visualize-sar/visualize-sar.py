@@ -8,9 +8,10 @@ import os
 import sys
 import io
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use("Agg")
 from matplotlib import pyplot
 import pandas
+import optparse
 
 def _push_line(name, line):
 
@@ -125,7 +126,7 @@ def _split_main(path):
 
 def _visualize_nfs():
 
-	pyplot.rcParams.update({'legend.labelspacing': 0.25})
+	pyplot.rcParams.update({"legend.labelspacing": 0.25})
 	dataframe = pandas.read_table("tmp/nfs.tsv", index_col=[0])
 	a = dataframe.plot(title="title", figsize=(16, 6))
 	# ？
@@ -141,7 +142,7 @@ def _visualize_nfs():
 
 def _visualize_load_average():
 
-	pyplot.rcParams.update({'legend.labelspacing': 0.25})
+	pyplot.rcParams.update({"legend.labelspacing": 0.25})
 	dataframe = pandas.read_table("tmp/load average.tsv", index_col=[0])
 	del dataframe["runq-sz"]
 	del dataframe["plist-sz"]
@@ -164,19 +165,30 @@ def _visualize_main():
 
 def main(argv):
 
-	if 1 == len(argv):
+	# コマンドラインオプションを読み取り
+	p = optparse.OptionParser(usage="usage")
+	p.add_option("--sar", default=None, dest="sar", help="path to a sar file.")
+	(options, args) = p.parse_args()
+	if options.sar is None or options.sar == "":
+		p.print_help()
+		return
+	if options.sar == "":
+		print("sar ファイルのパスをください")
+		return
+	if not os.path.exists(options.sar):
 		print("sar ファイルのパスをください")
 		return
 
+	# 作業ディレクトリを準備
 	if not os.path.exists("images"):
 		os.mkdir("images")
 	if not os.path.exists("tmp"):
 		os.mkdir("tmp")
 
-	path = argv[1]
+	# 分割して一時ファイルを出力
+	_split_main(options.sar)
 
-	_split_main(path)
-
+	# グラフ出力
 	_visualize_main()
 
 main(sys.argv)
