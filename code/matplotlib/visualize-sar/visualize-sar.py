@@ -163,7 +163,7 @@ def _visualize_main():
 	_visualize_load_average()
 	_visualize_nfs()
 
-def main(argv):
+def _main(argv):
 
 	# コマンドラインオプションを読み取り
 	p = optparse.OptionParser(usage="usage")
@@ -191,4 +191,4 @@ def main(argv):
 	# グラフ出力
 	_visualize_main()
 
-main(sys.argv)
+_main(sys.argv)
