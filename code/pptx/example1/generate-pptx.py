@@ -47,7 +47,7 @@ def main():
 		title.text = "もうこわくない！\nパワポ！パワポ！\nパ・ワ・ポ！"
 		# サブタイトル
 		subtitle = slide.placeholders[1]
-		subtitle.text = "2018年2月14日\n社内勉強会"
+		subtitle.text = "2018年2月23日\n社内勉強会"
 
 	### セクション 見出し
 	if True:
@@ -333,8 +333,8 @@ def main():
 			rows = 2
 			cols = 3
 			left, top = pptx.util.Inches(2.0), pptx.util.Inches(2.0)
-			width, height = pptx.util.Inches(6.0), pptx.util.Inches(0.6)
-			table = shapes.add_table(rows, cols, left, top, width, height).table
+			cx, cy = pptx.util.Inches(6.0), pptx.util.Inches(0.6)
+			table = shapes.add_table(rows, cols, left, top, cx, cy).table
 			# table.columns[0].width = pptx.util.Inches(2.0)
 			# table.columns[1].width = pptx.util.Inches(4.0)
 			# table.columns[2].width = pptx.util.Inches(4.0)
