@@ -158,6 +158,12 @@ def _visualize_load_average():
 	# ファイルに保存
 	pyplot.savefig("images/load average.png")
 
+def _mkdir(path):
+
+	if os.path.exists(path):
+		return
+	os.mkdir(path)
+
 def _visualize_main():
 
 	_visualize_load_average()
@@ -173,17 +179,15 @@ def _main(argv):
 		p.print_help()
 		return
 	if options.sar == "":
-		print("sar ファイルのパスをください")
+		p.print_help()
 		return
 	if not os.path.exists(options.sar):
-		print("sar ファイルのパスをください")
+		p.print_help()
 		return
 
 	# 作業ディレクトリを準備
-	if not os.path.exists("images"):
-		os.mkdir("images")
-	if not os.path.exists("tmp"):
-		os.mkdir("tmp")
+	_mkdir("images")
+	_mkdir("tmp")
 
 	# 分割して一時ファイルを出力
 	_split_main(options.sar)
