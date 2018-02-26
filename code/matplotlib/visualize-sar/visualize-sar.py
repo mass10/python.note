@@ -12,24 +12,37 @@ matplotlib.use("Agg")
 from matplotlib import pyplot
 import pandas
 import optparse
+import glob
+
+
+
+
+
+
+def _as_tsv(s):
+
+	fields = s.split()
+	return "\t".join(fields)
 
 def _push_line(name, line):
 
 	file = open(name, "a+")
-	fields = line.split()
-	file.write("\t".join(fields))
+	file.write(line)
 	file.write("\n")
 	file.close()
 
 def _remove(name):
 
-	if not os.path.exists(name):
-		return
-	os.remove(name)
+	names = glob.glob(name)
+	for e in names:
+		if not os.path.exists(e):
+			continue
+		os.remove(e)
 
 def _split_main(path):
 
 	_remove("tmp/cpu.tsv")
+	_remove("tmp/cpu-*.tsv")
 	_remove("tmp/DEV.tsv")
 	_remove("tmp/disk.tsv")
 	_remove("tmp/IFACE error.tsv")
@@ -47,10 +60,12 @@ def _split_main(path):
 	_remove("tmp/tasks.tsv")
 	_remove("tmp/TTY.tsv")
 
-	header = ""
+	headers_map = {}
+	cpu_header = ""
 	lines = {}
 	file = open(path)
 	current_section = ""
+	cpus = set()
 
 	while True:
 		line = file.readline()
@@ -63,71 +78,152 @@ def _split_main(path):
 			continue
 		if 0 <= line.find("CPU") and 0 <= line.find("%usr"):
 			current_section = "cpu"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+				print("adding new header ... [{}]".format(line))
+			else:
+				print("ignoring new header ... [{}]".format(line))
+			continue
 		elif 0 <= line.find("proc/s") and 0 <= line.find("cswch/s"):
 			current_section = "tasks"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("pswpin/s") and 0 <= line.find("pswpout/s"):
 			current_section = "swap"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("pgpgin/s") and 0 <= line.find("pgpgout/s"):
 			current_section = "pages"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("tps") and 0 <= line.find("bwrtn/s"):
 			current_section = "disk"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("frmpg/s") and 0 <= line.find("bufpg/s"):
 			current_section = "page cache"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("kbmemfree") and 0 <= line.find("kbmemused"):
 			current_section = "mem"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("kbswpfree") and 0 <= line.find("kbswpused"):
 			current_section = "swap size"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("dentunusd") and 0 <= line.find("file-nr"):
 			current_section = "nodes"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("ldavg-1"):
 			current_section = "load average"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("TTY") and 0 <= line.find("rcvin/s"):
 			current_section = "TTY"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("DEV") and 0 <= line.find("tps"):
 			current_section = "DEV"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("IFACE") and 0 <= line.find("rxpck/s"):
 			current_section = "IFACE"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("IFACE") and 0 <= line.find("rxerr/s"):
 			current_section = "IFACE error"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("call/s") and 0 <= line.find("retrans/s"):
 			current_section = "nfs"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("scall/s") and 0 <= line.find("badcall/s"):
 			current_section = "nfsd"
-			header = line
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		elif 0 <= line.find("totsck") and 0 <= line.find("tcpsck"):
 			current_section = "SOCK"
-			header = line
-		elif 0 <= line.find("Average:"):
-			current_section = ""
+			if current_section not in headers_map:
+				headers_map[current_section] = line
+			continue
 		if current_section == "":
 			continue
+
+		# if current_section == "cpu":
+		# 	fields = line.split()
+		# 	cpu = fields[1]
+		# 	if cpu == "CPU":
+		# 		continue
+		# 	del fields[1]
+		# 	line = "\t".join(fields)
+		# 	filename = "tmp/{}-{}.tsv".format(current_section, cpu)
+		# 	if cpu not in cpus:
+		# 		header_line = _as_tsv(cpu_header)
+		# 		del header_line[1]
+		# 		_push_line(filename, _as_tsv(cpu_header))
+		# 	cpus.add(cpu)
+		# else:
+		# 	filename = "tmp/{}.tsv".format(current_section)
+
 		if current_section not in lines:
 			lines[current_section] = []
 		lines[current_section].append(line)
-		filename = "tmp/{}.tsv".format(current_section)
-		_push_line(filename, line)
+
+		# _push_line(filename, line)
 
 	file.close()
 
-def _visualize_nfs():
+	for section in lines:
+		contents = lines[section]
+		filename = "tmp/{}.tsv".format(section)
+		print("[TRACE] creating ... [{}].".format(filename))
+		_push_line(filename, headers_map[section])
+		for line in contents:
+			_push_line(filename, line)
+
+def _visualize_cpu():
+
+	names = glob.glob("tmp/cpu-*.tsv")
+	for e in names:
+		print("[TRACE] reading [{}]".format(e))
+		pyplot.rcParams.update({"legend.labelspacing": 0.25})
+		dataframe = pandas.read_table(e, index_col=[0])
+		a = dataframe.plot(title="title", figsize=(16, 6))
+		# ？
+		pyplot.autoscale()
+		# グリッド線を表示する
+		pyplot.grid()
+		# 目盛りを斜めに
+		pyplot.xticks(rotation=70)
+		# 目盛りが隠れるのを防ぐ
+		pyplot.tight_layout()
+		# ファイルに保存
+		name = e.replace("tmp/", "images/")
+		name = e.replace(".tsv", ".png")
+		pyplot.savefig("images/cpu.png")
+
+def _visualize_dev():
 
 	pyplot.rcParams.update({"legend.labelspacing": 0.25})
-	dataframe = pandas.read_table("tmp/nfs.tsv", index_col=[0])
+	dataframe = pandas.read_table("tmp/DEV.tsv", index_col=[0])
 	a = dataframe.plot(title="title", figsize=(16, 6))
 	# ？
 	pyplot.autoscale()
@@ -138,7 +234,29 @@ def _visualize_nfs():
 	# 目盛りが隠れるのを防ぐ
 	pyplot.tight_layout()
 	# ファイルに保存
-	pyplot.savefig("images/nfs.png")
+	pyplot.savefig("images/DEV.png")
+
+def _visualize_disk():
+
+	pyplot.rcParams.update({"legend.labelspacing": 0.25})
+	dataframe = pandas.read_table("tmp/disk.tsv", index_col=[0])
+	a = dataframe.plot(title="title", figsize=(16, 6))
+	# ？
+	pyplot.autoscale()
+	# グリッド線を表示する
+	pyplot.grid()
+	# 目盛りを斜めに
+	pyplot.xticks(rotation=70)
+	# 目盛りが隠れるのを防ぐ
+	pyplot.tight_layout()
+	# ファイルに保存
+	pyplot.savefig("images/disk.png")
+
+def _visualize_iface():
+	return
+
+def _visualize_iface_error():
+	return
 
 def _visualize_load_average():
 
@@ -158,6 +276,52 @@ def _visualize_load_average():
 	# ファイルに保存
 	pyplot.savefig("images/load average.png")
 
+def _visualize_mem():
+	return
+
+def _visualize_nfs():
+
+	pyplot.rcParams.update({"legend.labelspacing": 0.25})
+	dataframe = pandas.read_table("tmp/nfs.tsv", index_col=[0])
+	a = dataframe.plot(title="title", figsize=(16, 6))
+	# ？
+	pyplot.autoscale()
+	# グリッド線を表示する
+	pyplot.grid()
+	# 目盛りを斜めに
+	pyplot.xticks(rotation=70)
+	# 目盛りが隠れるのを防ぐ
+	pyplot.tight_layout()
+	# ファイルに保存
+	pyplot.savefig("images/nfs.png")
+
+def _visualize_nfsd():
+	return
+
+def _visualize_nodes():
+	return
+
+def _visualize_page_cache():
+	return
+
+def _visualize_pages():
+	return
+
+def _visualize_sock():
+	return
+
+def _visualize_swap():
+	return
+
+def _visualize_swap():
+	return
+
+def _visualize_tasks():
+	return
+
+def _visualize_tty():
+	return
+
 def _mkdir(path):
 
 	if os.path.exists(path):
@@ -166,8 +330,23 @@ def _mkdir(path):
 
 def _visualize_main():
 
+	_visualize_cpu()
+	_visualize_tasks()
+	_visualize_swap()
+	_visualize_pages()
+	_visualize_disk()
+	_visualize_page_cache()
+	_visualize_mem()
+	_visualize_swap()
+	_visualize_nodes()
 	_visualize_load_average()
+	_visualize_tty()
+	_visualize_dev()
+	_visualize_iface()
+	_visualize_iface_error()
 	_visualize_nfs()
+	_visualize_nfsd()
+	_visualize_sock()
 
 def _main(argv):
 
