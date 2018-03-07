@@ -15,52 +15,86 @@ from elasticsearch import Elasticsearch
 import json
 
 
-def _get_insert(connection, index_name, doc_type):
-	def _operation(name, maker):
-		connection.index(index = index_name, doc_type = doc_type, id = uuid.uuid4(),
-			body = {"name": name, "maker": maker})
-	return _operation
+INDEX_NAME = 'ゲームインデックス'
+DOC_TYPE_NAME = 'ゲーム',
 
-def _main(argv):
+def _setup():
 
-	INDEX_NAME = 'ゲームインデックス'
-	DOC_TYPE_NAME = 'ゲーム',
-
-	# 接続設定
-	# es = Elasticsearch()
 	es = Elasticsearch(host = '127.0.0.1')
-
-	insert = _get_insert(es, INDEX_NAME, DOC_TYPE_NAME)
-
-	# index に document(?) を追加
-	insert("いっき", "サンソフト")
-	insert("ツインビー", "コナミ")
-	insert("スペランカー", "アイレム")
-	insert("ゼビウス", "ナムコ")
-	insert("ゼビウス", "ナムコ")
-	insert("謎の村雨城", "コナミ")
-	insert("ゼルダの伝説", "任天堂")
-
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "いっき", "maker": "サンソフト"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "ツインビー", "maker": "コナミ"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "スペランカー", "maker": "アイレム"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "ゼビウス", "maker": "ナムコ"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "ディグダグ", "maker": "ナムコ"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "謎の村雨城", "maker": "コナミ"})
+	es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = uuid.uuid4(), body = {"name": "ゼルダの伝説", "maker": "任天堂"})
 	# 強制コミット
 	es.indices.refresh(index = INDEX_NAME)
 
-	# time.sleep(0.5)
+def _search1():
 
-	# 全件検索
-	# response = es.search(index = INDEX_NAME, body = {})
-	response = es.search(
-		index = INDEX_NAME,
-		body={"query": {"match_all": {}}, "size": 9999})
-
-	# 結果を表示
+	print("$$$ search1 $$$")
+	es = Elasticsearch(host = '127.0.0.1')
+	query = {
+		"query": {
+			"match": {
+				"maker": "ナムコ"
+			}
+		},
+		"size": 9999
+	}
+	response = es.search(index = INDEX_NAME, doc_type = "ゲーム", body=query)
 	for e in response['hits']['hits']:
 		print(json.dumps(e, ensure_ascii = False))
-
-	# ヒット数
 	print('hits: {0}'.format(response['hits']['total']))
 
-	# index(=データベース？？)を破棄
-	if es.indices.exists(index = "人名インデックス"):
+def _search2():
+
+	print("$$$ search2 $$$")
+	es = Elasticsearch(host = '127.0.0.1')
+	query = {
+		"query": {
+			"match": {
+				"maker": "ナムコ"
+			}
+		}
+	}
+	response = es.search(index = INDEX_NAME, doc_type = "人名", body=query)
+	for e in response['hits']['hits']:
+		print(json.dumps(e, ensure_ascii = False))
+	print('hits: {0}'.format(response['hits']['total']))
+
+def _search3():
+
+	print("$$$ search2 $$$")
+	es = Elasticsearch(host = '127.0.0.1')
+	query = {
+		"query": {
+			"match": {
+				"メーカー": "ナムコ"
+			}
+		}
+	}
+	response = es.search(index = INDEX_NAME, doc_type = "ゲーム", body=query)
+	for e in response['hits']['hits']:
+		print(json.dumps(e, ensure_ascii = False))
+	print('hits: {0}'.format(response['hits']['total']))
+
+def _fin():
+
+	es = Elasticsearch(host = '127.0.0.1')
+	# index(=データベース)を破棄
+	if es.indices.exists(index = INDEX_NAME):
 		es.indices.delete(index = INDEX_NAME)
+
+def _main(argv):
+
+	_setup()
+
+	_search1()
+	_search2()
+	_search3()
+
+	_fin()
 
 _main(sys.argv)
