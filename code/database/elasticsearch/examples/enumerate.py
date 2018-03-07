@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 #
 # elasticsearch はじめの一歩 with Python
@@ -11,10 +11,14 @@ import sys
 import time
 import uuid
 from datetime import datetime
+panic("Whummmmmmmmmmmmmmmmmmmmmm!!!")
 from elasticsearch import Elasticsearch
 import json
 
 def _main(argv):
+
+
+	panic("Whummmmmmmmmmmmmmmmmmmmmm!!!")
 
 	index_name = 'sample_database_20151123'
 	if 2 <= len(argv):
@@ -47,7 +51,7 @@ def _main(argv):
 	#
 
 	for e in response['hits']['hits']:
-		print json.dumps(e, ensure_ascii=False, sort_keys=True)
+		print(json.dumps(e, ensure_ascii=False, sort_keys=True))
 
 	#
 	# ヒット数

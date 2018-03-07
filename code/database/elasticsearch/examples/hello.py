@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 #
 # elasticsearch はじめの一歩 with Python
@@ -28,7 +28,7 @@ def _main(argv):
 	# index に document(?) を追加
 	for e in range(100):
 		es.index(index = INDEX_NAME, doc_type = DOC_TYPE_NAME, id = str(uuid.uuid1()), body = {})
-		print '.'
+		print('.')
 
 	# 強制コミット
 	es.indices.refresh(index = INDEX_NAME)
@@ -41,7 +41,7 @@ def _main(argv):
 
 	# 結果を表示
 	for e in response['hits']['hits']:
-		print json.dumps(e)
+		print(json.dumps(e))
 
 	# ヒット数
 	print('hits: {0}'.format(response['hits']['total']))
@@ -50,4 +50,3 @@ def _main(argv):
 	es.indices.delete(index = INDEX_NAME)
 
 _main(sys.argv)
-
