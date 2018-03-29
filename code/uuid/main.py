@@ -5,7 +5,7 @@ import uuid
 
 def main():
 
-	# network address を含むため、プライバシーを漏らす。
+	# network address に依存する情報を含んでおり、プライバシーを漏らす。
 	print(uuid.uuid1())
 
 	# ランダムな文字列を生成する。
