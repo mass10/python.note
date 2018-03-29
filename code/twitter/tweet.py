@@ -14,15 +14,19 @@ def configure():
 		return conf
 
 def tweet(text):
-	settings = configure()
+	if text == "":
+		print("canceled.")
+		return
+	print("text: [", text, "]", sep="")
+	conf = configure()
 	twitter = OAuth1Session(
-		settings['consumer_key'],
-		settings['consumer_secret'],
-		settings['token'],
-		settings['token_secret'])
+		conf["consumer_key"],
+		conf["consumer_secret"],
+		conf["token"],
+		conf["token_secret"])
 	params = {"status": text}
 	req = twitter.post("https://api.twitter.com/1.1/statuses/update.json", params=params)
-	print(req)
+	print("RESPONSE:", req, sep="")
 
 def read_text():
 	s = io.StringIO()
@@ -33,7 +37,7 @@ def read_text():
 		if line == ".\r\n":
 			break
 		s.write(line)
-	return s.getvalue()
+	return s.getvalue().rstrip()
 
 def main():
 	text = read_text()
