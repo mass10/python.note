@@ -25,7 +25,9 @@ def main():
 		matplotlib.pyplot.imshow(image, cmap=matplotlib.pyplot.cm.gray_r, interpolation='nearest')
 		matplotlib.pyplot.title('Training: %i' % label)
 		position = position + 1
+	# 可視化(ターミナルエミュレータでは表示されない)
 	matplotlib.pyplot.show()
+	# ファイルに書き出す
 	matplotlib.pyplot.savefig("out.png")
 
 main()
