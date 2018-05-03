@@ -2,20 +2,33 @@
 # coding: utf-8
 
 import sys
-import matplotlib.pyplot as plt
 from sklearn import datasets, svm, metrics
-import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot
+import numpy
 from PIL import Image
 
 def _load_image(image_path):
+
 	image = Image.open(image_path).convert("L")
 	image = image.resize((8, 8), Image.ANTIALIAS)
-	img = np.asarray(image, dtype=float)
-	img = np.floor(16 - 16 * (img / 256))
+	img = numpy.asarray(image, dtype=float)
+	img = numpy.floor(16 - 16 * (img / 256))
+
+	# 識別用に粗く変換した状態の画像
+	if True:
+		matplotlib.pyplot.imshow(img)
+		matplotlib.pyplot.gray()
+		matplotlib.pyplot.show()
+		matplotlib.pyplot.savefig("識別用に変換された画像.png")
+
 	img = img.flatten()
+	print("[trace] img:", img)
 	return img
 
 def _predict(sample_image):
+
 	# 手書き数字データをダウンロードしています。
 	digits = datasets.load_digits()
 	# 分類器(C-Support Vector Classification)
@@ -27,6 +40,7 @@ def _predict(sample_image):
 	print(predicted)
 
 def _main(argv):
+
 	if len(argv) == 1:
 		print("path to image?")
 		return
