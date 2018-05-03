@@ -2,6 +2,13 @@
 
 メモ
 
+# Getting started pip on Ubuntu 18 LTS ######################
+
+```bash
+apt update
+apt install python3-pip
+```
+
 # _tkinter.TclError: no display name and no $DISPLAY environment variable ######################
 
 ```python
