@@ -2,7 +2,7 @@
 
 メモ
 
-# Getting started pip on Ubuntu 18 LTS (2018-05-03) ######################
+# Getting started with pip on Ubuntu 18 LTS (2018-05-03) ######################
 
 ```bash
 apt update
