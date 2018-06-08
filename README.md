@@ -54,3 +54,11 @@ $ pip3 install jupyter
 $ jupyter notebook --ip 192.168.187.134
 ```
 
+
+
+
+
+
+
+
+
