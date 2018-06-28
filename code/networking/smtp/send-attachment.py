@@ -16,7 +16,7 @@ def _read_text_file(path):
 def _send(subject, mail_from, rcpt_to, body, filename):
 
 	root_message = MIMEMultipart()
-	root_message["Subject"] = subject
+	root_message["Subject"] = smtplib.email.Header.Header(subject, "utf-8")
 	root_message["From"] = mail_from
 	root_message["To"] = rcpt_to
 	root_message["Date"] = formatdate()
