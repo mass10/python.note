@@ -2,13 +2,6 @@
 
 メモ
 
-# Getting started with pip on Ubuntu 18 LTS (2018-05-03) ######################
-
-```bash
-apt update
-apt install python3-pip
-```
-
 # _tkinter.TclError: no display name and no $DISPLAY environment variable ######################
 
 ```python
@@ -54,11 +47,19 @@ $ pip3 install jupyter
 $ jupyter notebook --ip 192.168.187.134
 ```
 
+# Getting started with pip on Ubuntu 18 LTS (2018-05-03) ######################
 
+```bash
+apt update
+apt install python3-pip
+```
 
+# Getting started with Python on Ubuntu 18 LTS ######################
 
-
-
-
-
-
+```bash
+pip3 install numpy
+pip3 install scipy
+pip3 install pandas
+pip3 install matplotlib
+pip3 install scikit-learn
+```
