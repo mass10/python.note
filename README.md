@@ -45,6 +45,7 @@ $ sudo service apache2 restart
 ```
 $ pip3 install jupyter
 $ jupyter notebook --ip 192.168.187.134
+$ sudo jupyter notebook --ip 0.0.0.0 --port 80 --allow-root
 ```
 
 # Getting started with pip on Ubuntu 18 LTS (2018-05-03) ######################
