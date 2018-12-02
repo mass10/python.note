@@ -58,6 +58,7 @@ apt install python3-pip
 # Getting started with Python on Ubuntu 18 LTS ######################
 
 ```bash
+pip3 install virtualenv
 pip3 install numpy
 pip3 install scipy
 pip3 install pandas
