@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # coding: utf-8
 
 def _sub(**arg):
@@ -12,6 +12,4 @@ def _main():
 	_sub(row=10, col=3)
 
 _main()
-
-
 
