@@ -1,0 +1,6 @@
+settings:
+    database:
+        user: oraadmin
+        password: "nHS (' as@@"
+        service_name: 'Service Name'
+
