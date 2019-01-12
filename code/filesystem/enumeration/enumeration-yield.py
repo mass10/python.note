@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 #
 # ディレクトリ走査
@@ -25,9 +25,10 @@ def _enum(path):
 
 	if os.path.isdir(path):
 		for x in os.listdir(path):
-			_enum(os.path.join(path, x))
+			for e in _enum(os.path.join(path, x)):
+				yield e
 	elif os.path.exists(path):
-		print(path)
+		yield path
 	else:
 		print('unknown path [' + path + '].')
 
@@ -35,7 +36,8 @@ def main(*args):
 
 	w = stopwatch()
 	for path in args:
-		_enum(path)
+		for e in _enum(path):
+			print("[", e, "]", sep="")
 	print(w)
-		
+
 main(*sys.argv[1:])
