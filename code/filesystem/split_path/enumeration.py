@@ -15,11 +15,10 @@ def _enum(path):
 
 def main(*args):
 
-	if len(args) == 1:
+	if len(args) == 0:
 		return
 
-	path = args[1]
+	for path in args:
+		_enum(path)
 
-	_enum(path)
-
-main(*sys.argv)
+main(*sys.argv[1:])
