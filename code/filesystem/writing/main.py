@@ -9,7 +9,7 @@ import codecs
 
 def _main(argv):
 
-    stream = io.open("main.log", "a+")
+    stream = io.open("log", "a+", encoding="utf-8")
     stream.write("AAAAAA\n")
     stream.write("あいうえお\n")
     stream.close()
