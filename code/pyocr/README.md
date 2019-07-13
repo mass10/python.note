@@ -15,3 +15,7 @@ sudo pip3 install pyocr
 tesseract images/honshibori-lemon.png stdout -l eng+jpn
 tesseract images/honshibori-lemon.png OUT -l eng+jpn
 ```
+
+# 手書き
+
+* 手書き文字はダメ...？？
