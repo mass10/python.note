@@ -29,9 +29,11 @@ def detect_tool():
 
 	return tool
 
-def scan_image(path):
+def read_image(path):
 
 	tool = detect_tool()
+	if tool is None:
+		return
 
 	txt = tool.image_to_string(
 		PIL.Image.open(path),
@@ -48,7 +50,7 @@ def main():
 
 	print("[TRACE] ### BEGIN ###")
 
-	scan_image("images/honshibori-lemon.png")
+	read_image("images/honshibori-lemon.png")
 
 	print("[TRACE] --- END ---")
 
