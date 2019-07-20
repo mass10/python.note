@@ -11,10 +11,10 @@ def detect_tool():
 
 	tools = pyocr.get_available_tools()
 	if len(tools) == 0:
-		print("[ERROR] OCR ライブラリがみつかりませんでした。パッケージ tesseract-ocr libtesseract-dev をインストールしてください。")
+		print("[ERROR] OCR ライブラリがみつかりませんでした。パッケージ tesseract-ocr をインストールしてください。")
 		print()
 		print("    sudo apt install tesseract-ocr")
-		print("    sudo apt install libtesseract-dev")
+		print("    sudo apt install libtesseract-dev (if needed)")
 		print()
 		return None
 
