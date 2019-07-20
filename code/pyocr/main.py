@@ -12,6 +12,10 @@ def detect_tool():
 	tools = pyocr.get_available_tools()
 	if len(tools) == 0:
 		print("[ERROR] OCR ライブラリがみつかりませんでした。パッケージ tesseract-ocr libtesseract-dev をインストールしてください。")
+		print()
+		print("    sudo apt install tesseract-ocr")
+		print("    sudo apt install libtesseract-dev")
+		print()
 		return None
 
 	tool = tools[0]
@@ -23,6 +27,9 @@ def detect_tool():
 	langs = tool.get_available_languages()
 	if not "jpn" in langs:
 		print("[TRACE] jpn がみつかりませんでした。言語パッケージ tesseract-ocr-jpn をインストールしてください。")
+		print()
+		print("    sudo apt install tesseract-ocr-jpn")
+		print()
 		return None
 
 	print("[TRACE] DETECTED: [jpn]")
