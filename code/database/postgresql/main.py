@@ -14,7 +14,7 @@ def get_connection():
 	connection.set_client_encoding("utf-8")
 	return connection
 
-def main():
+def test1():
 
 	connection = get_connection()
 
@@ -25,5 +25,9 @@ def main():
 	cur.close()
 
 	connection.close()
+
+def main():
+
+	test1()
 
 main()
