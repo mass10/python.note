@@ -65,3 +65,22 @@ pip3 install pandas
 pip3 install matplotlib
 pip3 install scikit-learn
 ```
+
+# Getting started with Python3 virtualenv ######################
+
+```
+python3 -m venv .
+
+. bin/activate
+
+which python3
+which pip3
+
+pip3 install aaa
+pip3 install bbb
+pip3 install ccc
+
+python3 ./your_application.py
+
+deactivate
+```
