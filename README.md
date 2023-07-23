@@ -84,3 +84,12 @@ python3 ./your_application.py
 
 deactivate
 ```
+
+# 2023-07-23 BERT を用いた文書のクラスタリング
+
+```sh
+pip install bertopic
+```
+
+データセット
+* [livedoor ニュースコーパス](https://www.rondhuit.com/download.html#ldcc)
