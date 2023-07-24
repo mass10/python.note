@@ -91,5 +91,5 @@ deactivate
 pip install bertopic
 ```
 
-データセット
 * [livedoor ニュースコーパス](https://www.rondhuit.com/download.html#ldcc)
+* [日本語BERT × 教師なし学習](https://qiita.com/sugulu_Ogawa_ISID/items/6a887e612edda9e35c0b)
